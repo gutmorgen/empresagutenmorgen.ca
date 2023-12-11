@@ -1,0 +1,44 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+  Contactos | Aquí puede contactar a un representante de ventas.
+{% endblock %}
+     {% block content %}
+
+   <div class="isolate bg-gray-50 border border-gray-300 rounded-lg mt-5 bg-white px-6 py-12 sm:py-12 lg:px-8">
+    <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true">
+      <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contactar un vededor</h2>
+      <p class="mt-2 text-lg leading-8 text-gray-600">En las próximas 24h será atendido por uno de nuestros vededores.</p>
+    </div>
+  <div class="container-fluid">
+    <form  method="post"  class="bg-gray-50 border border-gray-300 mt-5 p-3 max-w-sm mx-auto bg-green-50   rounded-lg required ">
+
+
+
+      <div class="relative z-0 w-full mb-5 group" >
+      {{ form }}
+        {% csrf_token %}
+        </div>
+
+
+         <div  class="text-center">
+
+       <button type="submit" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Enviar</button>
+        </div>
+
+    </form>
+
+    </div>
+       <div class="mx-auto max-w-2xl item-center mt-3 justify-center text-center">
+            <span> <a href="{% url "shop:product_list"%}">
+            <img  class="h-20 mx-auto max-w-2xl item-center justify-center text-center" src="{% static "img/logoGM.svg" %}" lang="es" alt="Logo" >
+       </a><h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{mensaje}}</h2> </span>
+
+
+      </div>
+
+
+    {% endblock %}

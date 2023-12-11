@@ -1,0 +1,91 @@
+{% include 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+ <div class="site-nav">
+    <div  id="sidebar" >
+    <h1  class="text-2xl font-bold tracking-tight text-gray-900">Categorias</h3>
+
+    <ul>
+      <li {% if not category %}class="selected"{% endif %}>
+        <a href="{% url "shop:product_list" %}">Todas</a>
+      </li>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }} </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    </div>
+    </div>
+
+
+
+     <div class="site-nav2">
+             <h1  class="text-2xl font-bold tracking-tight text-gray-900">Categorias</h3>
+
+    <ul>
+      <li {% if not category %}class="selected"{% endif %}>
+            <div class="inline-flex mb-2 rounded-md shadow-sm" role="group">
+       <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+         <a href="{% url "shop:product_list" %}">Todas</a>
+              </button>
+        </div>
+      </li>
+      {% for c in categories %}
+     <div class="inline-flex mb-2 rounded-md shadow-sm" role="group">
+
+        <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+              <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+              <a class="" href="{{ c.get_absolute_url }}">{{ c.name }} </a>
+              </button>
+        </li>
+        </div>
+      {% endfor %}
+    </ul>
+
+    </div>
+     <div class="mx-auto max-w-2xl p-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8" >
+
+         <h1 class="text-2xl font-bold tracking-tight text-gray-900">{% if category %}{{ category.name }}{% else %}Productos{% endif %}</h1>
+
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+
+    {% for product in products %}
+       <div class="group relative">
+        <div style="9rem;" class="card rounded-md bg-white">
+
+      <a href="{{ product.get_absolute_url }}">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white  lg:aspect-none group-hover:opacity-75 lg:h-80">
+
+
+          <img  src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </a>
+        </div>
+            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+        <br>
+        ${{ product.price }}
+
+
+
+
+
+     </div>
+      </div>
+
+
+    {% endfor %}
+    </div>
+
+     </div>
+
+
+
+{% endblock %}
